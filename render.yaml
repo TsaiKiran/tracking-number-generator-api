@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: tracking-number-generator
+    env: docker
+    plan: free
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: REDIS_URL
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: JAVA_OPTS
+        value: "-XX:+UseContainerSupport -XX:MaxRAMPercentage=75"
+    ipAllowList: []
+    maxmemoryPolicy: noeviction

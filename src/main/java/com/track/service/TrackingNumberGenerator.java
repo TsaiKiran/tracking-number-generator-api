@@ -32,10 +32,11 @@ public class TrackingNumberGenerator {
 
         long sequence = counter.incrementAndGet();
         
-        // Format: CCDDDDDDNNNNNN
-        // CC = Country codes (First Letter of each country - origin and dest)
-        // DDDDDD = Prefix formatted above (YYMMDD)
-        // NNNNNN = 8 digit Sequence number (padded with zeros)
+        /* Format: CCDDDDDDNNNNNN
+         * CC = Country codes (First Letter of each country - origin and dest)
+         *DDDDDD = Prefix formatted above (YYMMDD)
+         *NNNNNN = 8 digit Sequence number (padded with zeros)
+         */
         return String.format("%s%s%s%08d",
                 request.getOriginCountryId().substring(0, 1),
                 request.getDestinationCountryId().substring(0, 1),

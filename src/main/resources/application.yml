@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: tracking-number-generator-api
+  redis:
+    ssl: false
+    url: ${REDIS_URL:redis://localhost:6379}
+    connect-timeout: 2000
+    timeout: 1000
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 2
+        max-wait: -1ms
+      shutdown-timeout: 200ms
+
+server:
+  port: ${PORT:8080}
+  servlet:
+    context-path: /
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+      probes:
+        enabled: true
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  redis:
+    ssl: false
+    timeout: 3000
+    lettuce:
+      pool:
+        max-active: 16
+        max-idle: 8
+        min-idle: 4
+        max-wait: -1ms
