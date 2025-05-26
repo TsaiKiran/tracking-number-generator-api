@@ -1,11 +1,11 @@
 services:
   - type: web
-    name: tracking-number-generator
+    name: tracking-number-generator-api
     env: docker
     plan: free
     healthCheckPath: /actuator/health
     envVars:
-      - key: REDIS_URL
+      - key: REDIS_URLx
       - key: SPRING_PROFILES_ACTIVE
         value: prod
       - key: JAVA_OPTS
