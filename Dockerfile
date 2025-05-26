@@ -10,4 +10,4 @@ RUN mvn clean package -DskipTests
 
 # Run the application
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "target/tracking-number-generator-1.0.0.jar"]
+ENTRYPOINT ["java", "-jar", "target/tracking-number-generator-0.0.1.jar"]

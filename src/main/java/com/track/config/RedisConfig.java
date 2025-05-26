@@ -18,7 +18,7 @@ public class RedisConfig {
 
     @Bean
     public RedisConnectionFactory redisConnectionFactory() {
-        String redisUrl = System.getenv("REDIS_URL");
+        String redisUrl = System.getenv().getOrDefault("REDIS_URL","redis://localhost:6379");
         try {
             URI uri = new URI(redisUrl);
             RedisStandaloneConfiguration config = new RedisStandaloneConfiguration();

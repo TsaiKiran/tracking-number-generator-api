@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.track</groupId>
 	<artifactId>tracking-number-generator</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>tracking-number-generator-api</name>
 	<description>Scalable Tracking Number Generator API</description>
 	<url/>
