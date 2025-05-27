@@ -90,6 +90,14 @@ Response:
 
 Base URL: `https://tracking-number-generator-api-ayt5.onrender.com/`
 
+
+⚠️ Note on Cold Start Delay
+
+Important:
+This application is deployed on Render’s free tier, which automatically puts services to sleep after 15 minutes of inactivity.
+As a result, the first request after a period of inactivity may take 30-45 seconds to respond due to cold start latency.
+Subsequent requests will respond normally with low latency.
+
 ## Features
 
 - Generates unique tracking numbers with date-based prefixes
