@@ -4,23 +4,22 @@ A scalable REST API service that generates unique tracking numbers for shipments
 
 ## Tracking Number Format
 
-The tracking number follows this format: `CCDDDDDDNNNNNN`
+The tracking number follows this format: <OriginInitial><DestInitial><YYDDD><Random8AlphaNumeric>
 
 Where:
 - `CC`: Two letters representing the first letter of origin and destination country codes
   - Example: US to GB becomes "UG"
-- `DDDDDD`: Date in YYMMDD format
-  - Example: March 15, 2024 becomes "240315"
-- `NNNNNN`: 8-digit sequence number (padded with zeros)
-  - Example: "00012345"
+- `YYDDD`: Last two digits of the year + day of the year (e.g., "24123" for 2nd May 2024) Added this to mask date(optional, can be YYMMDD too)
+- `Random8AlphaNumeric`:  8 random letters/numbers (I skipped 'O' and '0' to avoid confusion)
+  - Example: "AB12CD34E"
 
-Example tracking number: `UG24031500012345`
+Example tracking number: `UG24123AB12CD34E`
 
 ## Setup Instructions
 
 ### Prerequisites
 - Java 17 or higher
-- Redis server
+- Redis server(local or cloud)
 - Maven
 
 ### Installation
@@ -80,9 +79,9 @@ customerSlug:redbox-logistics
 Response:
 ```json
 {
-  "trackingNumber": "MI18112000000011",
-  "createdAt": "2025-05-26T19:33:57.193113157Z",
-  "customerSlug": "redbox-logistics"
+    "trackingNumber": "MI1832422V2KZ4H",
+    "createdAt": "2025-06-04T19:54:38.270386+05:30",
+    "customerSlug": "redbox-logistics"
 }
 ```
 
@@ -100,12 +99,12 @@ Subsequent requests will respond normally with low latency.
 
 ## Features
 
-- Generates unique tracking numbers with date-based prefixes
-- Redis-based sequence number generation
+- Always gives you a unique tracking number, even if you hit it a million times a day.
+- No confusion in the tracking number (no 'O' or '0').
 - Input validation for all fields
 - Error handling with detailed responses
-- Daily sequence number reset
-- Scalable design for high-volume usage
+- Date based sequence number reset
+- Scalable design for high-volume/multiple instance usage
 
 ## Error Handling
 
